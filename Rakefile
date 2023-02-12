@@ -5,6 +5,13 @@ require 'rspec/core/rake_task'
 require 'rake/extensiontask'
 require 'ci/reporter/rake/rspec'
 
+module TempFixForRakeLastComment
+  def last_comment
+    last_description
+  end
+end
+Rake::Application.send :include, TempFixForRakeLastComment
+
 Rake::ExtensionTask.new do |t|
   t.name = 'hermann_rdkafka'
   t.ext_dir = 'ext/hermann'
